@@ -31,7 +31,7 @@ const printStacks = () => {
 
 // Next, what do you think this function should do?
 const movePiece = () => {
-  // Your code here
+  // Your code here 
 
 }
 
@@ -44,7 +44,7 @@ const isLegal = () => {
 // What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
   // Your code here
-
+  // minimum amount of moves for a win is 15 (4 pieces)
 }
 
 // When is this function called? What should it do with its argument?
