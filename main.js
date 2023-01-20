@@ -37,14 +37,21 @@ const movePiece = () => {
 
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
 const isLegal = () => {
-  // Your code here
-
+  if (startStack.at(-1) < endStack.at(-1) || typeof endStack[0] === "undefined") {
+    return true
+  } else {
+    return false
+  }
 }
 
 // What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
-  // Your code here
   // minimum amount of moves for a win is 15 (4 pieces)
+  if (stacks.b[0] === 4 && stacks.b[3] === 1) {
+    return true
+  } else {
+    return false
+  }
 }
 
 // When is this function called? What should it do with its argument?
