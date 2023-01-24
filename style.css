@@ -1,57 +1,73 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+  padding: 25px;
+}
+
+hr {
+  width: 100vw;
+  height: 5px;
+  background-color: black;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 [data-row] {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  height: 34px;
-  margin: 25px;
-  border: 1px solid lightgray;
+  width: 25px;
+  height: 50vh;
+  margin: 75px 175px 0 175px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  background-color: rgb(73, 45, 36);
 }
 
 .row {
   z-index: -10;
 }
 
-[data-row].red {
-  background-color: #f6c5c5;
-}
-
-[data-row].yellow {
-  background-color: #ffffa9;
-}
-
-[data-row].green {
-  background-color: #baf6ba;
-}
-
-[data-row].blue {
-  background-color: aliceblue;
-}
-
 .stone {
+  border: 1px solid black;
   z-index: 10;
 }
 
 [data-color] {
-  width: 25px;
+  border-radius: 10px;
   float: left;
 }
 
 [data-color="blue"] {
+  width: 50px;
   height: 33px;
   background-color: blue;
 }
 
 [data-color="green"] {
+  width: 100px;
   height: 33px;
   background-color: green;
 }
 
 [data-color="red"] {
+  width: 175px;
   height: 33px;
   background-color: red;
 }
 
 [data-color="yellow"] {
+  width: 250px;
   height: 33px;
   background-color: yellow;
 }
