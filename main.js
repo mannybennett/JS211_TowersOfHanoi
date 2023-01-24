@@ -7,59 +7,44 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// An object that represents the three stacks of Towers of Hanoi; 
-  // * each key is an array of Numbers: 
-    // * A is the far-left, 
-    // * B is the middle, 
-    // * C is the far-right stack
-      // * Each number represents the largest to smallest tokens: 
-        // * 4 is the largest, 
-        // * 1 is the smallest
-
 let stacks = {
   a: [4, 3, 2, 1],
   b: [],
   c: []
 };
 
-// Start here. What is this function doing?
 const printStacks = () => {
   console.log("a: " + stacks.a);
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
 
-// Next, what do you think this function should do?
-const movePiece = () => {
-  endStack.push(startStack.pop())
+const movePiece = (startStack, endStack) => {
+  stacks[endStack].push(stacks[startStack].pop())
 }
 
-// Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
 const isLegal = (startStack, endStack) => {
-  if (startStack.at(-1) < endStack.at(-1) || typeof endStack[0] === "undefined") {
+  if (stacks[startStack].at(-1) < stacks[endStack].at(-1) || typeof stacks[endStack][0] === "undefined") {
     return true
   } else {
     return false
   }
 }
 
-// What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
-  // minimum amount of moves for a win is 15 (4 pieces)
-  if (stacks.b[0] === 4 && stacks.b[3] === 1) {
+  if (stacks.c[0] === 4 && stacks.c[3] === 1) {
     return true
   } else {
     return false
   }
 }
 
-// When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
   if (isLegal(startStack, endStack)) {
-    movePiece()
+    movePiece(startStack, endStack)
     checkForWin()
   } else {
-    return "Not a legal move."
+    return console.log("Not a legal move.")
   }
 }
 
@@ -82,6 +67,18 @@ if (typeof describe === 'function') {
       towersOfHanoi('a', 'b');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
+    // Additional Unit Test #1
+    it('should be able to move a block back', () => {
+      towersOfHanoi('b', 'a');
+      assert.deepEqual(stacks, { a: [4, 3, 2, 1], b: [], c: [] });
+    });
+    //
+    // Additional Unit Test #2
+    it('should be undefined when an empty startStack is called', () => {
+      towersOfHanoi('b', 'c');
+      assert.deepEqual(stacks, { a: [4, 3, 2, 1], b: [], c: [undefined] });
+    });
+    //
   });
 
   describe('#isLegal()', () => {
@@ -102,14 +99,27 @@ if (typeof describe === 'function') {
       assert.equal(isLegal('a', 'c'), true);
     });
   });
+
   describe('#checkForWin()', () => {
     it('should detect a win', () => {
-      stacks = { a: [], b: [4, 3, 2, 1], c: [] };
+      stacks = { a: [], b: [], c: [4, 3, 2, 1] };
       assert.equal(checkForWin(), true);
-      stacks = { a: [1], b: [4, 3, 2], c: [] };
+      stacks = { a: [1], b: [], c: [4, 3, 2] };
       assert.equal(checkForWin(), false);
     });
   });
+
+  // Additional Unit Test #3
+  describe('#printStacks()', () => {
+    it('should print three stacks', () => {
+      printStacks()
+      assert.deepEqual(
+      console.log("a: " + stacks.a),
+      console.log("b: " + stacks.b),
+      console.log("c: " + stacks.c));
+    });
+  });
+  //
 
 } else {
 
