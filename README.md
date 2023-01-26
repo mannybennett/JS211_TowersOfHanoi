@@ -12,4 +12,4 @@ Terminal:
 GUI:
 1) Utilize my previous code.
 2) Create three <div>'s within my html file that will be the stacks/placeholders for the blocks.
-3) Create four additional <div>'s that will serve as the blocks themselves.
+3) Create four additional <div>'s that will serve as the stones themselves.

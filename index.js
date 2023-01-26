@@ -1,18 +1,62 @@
-const stoneSelect = () => {
-  const selection = onmousedown((this, ev) => {
-    document.getElementById(ev).innerHTML = null
-  })
+let stacks = {
+  a: [4, 3, 2, 1],
+  b: [],
+  c: []
+};
+
+const movePiece = (startStack, endStack) => {
+  stacks[endStack].push(stacks[startStack].pop())
 }
 
+const isLegal = (startStack, endStack) => {
+  if (stacks[startStack].at(-1) < stacks[endStack].at(-1) || typeof stacks[endStack][0] === "undefined") {
+    return true
+  } else {
+    return false
+  }
+}
 
+const checkForWin = () => {
+  if (stacks.c[0] === 4 && stacks.c[3] === 1) {
+    return true
+  } else {
+    return false
+  }
+}
 
+let stone = null
 
+const towerSelect = (element) => {
+  let selection = element.getAttribute('data-tower')
+  if (!selection) {
+    selection = element.parentElement.getAttribute('data-tower')
+  }
+  console.log(selection)
+}
 
+const stoneSelect = (element) => {
+  const selection = element.getAttribute('data-size')
+  console.log(selection)
+  // const selectedTower = document.getElementById(rowID);
+  // stone = selectedRow.removeChild(selectedRow.lastChild);
+}
 
+// to make towers and stones clickable...
+const main = document.querySelector('main')
+const towers = main.querySelectorAll('.tower')
 
+towers.forEach(tower => {
+  tower.addEventListener('click', (e) => towerSelect(e.target))
+});
+const stones = main.querySelectorAll('.stone')
 
-
-
+stones.forEach(stone => {
+  stone.addEventListener('click', (e) => {
+    // e.stopPropagation()
+    stoneSelect(e.target)
+  })
+});
+//
 
 
 
