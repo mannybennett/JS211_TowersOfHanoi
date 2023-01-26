@@ -31,14 +31,15 @@ const towerSelect = (element) => {
   if (!selection) {
     selection = element.parentElement.getAttribute('data-tower')
   }
-  console.log(selection)
 }
 
 const stoneSelect = (element) => {
   const selection = element.getAttribute('data-size')
-  console.log(selection)
-  // const selectedTower = document.getElementById(rowID);
-  // stone = selectedRow.removeChild(selectedRow.lastChild);
+  // console.log(selection)
+  // const selectedStone = document.getElementById(selection)
+  // console.log(selectedStone)
+  // stone = selectedStone.remove()
+  // console.log(stone)
 }
 
 // to make towers and stones clickable...
