@@ -24,39 +24,82 @@ const checkForWin = () => {
   }
 }
 
-let stone = null
-
-const towerSelect = (element) => {
-  let selection = element.getAttribute('data-tower')
-  if (!selection) {
-    selection = element.parentElement.getAttribute('data-tower')
-  }
+const setUpUI = () => {
+  const towers = document.querySelectorAll('[data-tower]')
+  towers.forEach(tower => {
+    tower.addEventListener('click', (event) => {
+      event.stopPropagation()
+      selectTower(event.target)
+    } )
+  })
 }
 
-const stoneSelect = (element) => {
-  const selection = element.getAttribute('data-size')
-  // console.log(selection)
-  // const selectedStone = document.getElementById(selection)
-  // console.log(selectedStone)
-  // stone = selectedStone.remove()
-  // console.log(stone)
+setUpUI()
+
+const selectTower = (clickedTower) => {
+  console.log(clickedTower)
+  const towerPosition = clickedTower.getAttribute('data-tower')
+  console.log(towerPosition)
+  pickUpStone(towerPosition)
 }
+
+const pickUpStone = (towerPosition) => {
+  const clickedTower = document.querySelector(`[data-tower = '${towerPosition}']`)
+  console.log(clickedTower)
+  console.log(clickedTower.children)
+  clickedTower.removeChild(clickedTower.lastChild)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let stone = null
+
+// const towerSelect = (element) => {
+//   let selection = element.getAttribute('data-tower')
+//   if (!selection) {
+//     selection = element.parentElement.getAttribute('data-tower')
+//   }
+//   console.log(selection)
+// }
+
+// const stoneSelect = (element) => {
+//   const selection = element.getAttribute('data-size')
+//   console.log(selection)
+//   const selectedStone = document.querySelector(`[data-size = '${selection}']`)
+//   console.log(selectedStone)
+//   // stone = selectedStone.remove()
+//   // console.log(stone)
+// }
 
 // to make towers and stones clickable...
-const main = document.querySelector('main')
-const towers = main.querySelectorAll('.tower')
+// const main = document.querySelector('main')
+// const towers = main.querySelectorAll('.tower')
 
-towers.forEach(tower => {
-  tower.addEventListener('click', (e) => towerSelect(e.target))
-});
-const stones = main.querySelectorAll('.stone')
+// towers.forEach(tower => {
+//   tower.addEventListener('click', (e) => startStackSelect(e.target))
+// });
+// const stones = main.querySelectorAll('.stone')
 
-stones.forEach(stone => {
-  stone.addEventListener('click', (e) => {
-    // e.stopPropagation()
-    stoneSelect(e.target)
-  })
-});
+// stones.forEach(stone => {
+//   stone.addEventListener('click', (e) => {
+//     e.stopPropagation()
+//     stoneSelect(e.target)
+//   })
+// });
 //
 
 
